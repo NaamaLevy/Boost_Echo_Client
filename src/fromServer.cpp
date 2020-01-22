@@ -98,12 +98,16 @@ fromServer::fromServer(ConnectionHandler &ch, bool isConnected, ClientData &clie
                 vector<string> message;
                 split(message, body, " ");
                 //borrow wish message
-
+                string book;
+                while (i<message.size()) {
+                    book = book +  message[i] + " ";
+                    i++;
+                }
                 if (message.size()>3 && message[3]==("borrow")){
                     if (clientData->getName()!=(message[0])){
                         if(clientData->checkBookInventory(genre, message[4])) {
                             string frame = "SEND" + newLine + "destination:" + genre  + newLine+ newLine+
-                                           clientData->getName() + " has " + message[4]  +
+                                           clientData->getName() + " has " + book  +
                                            newLine + '\0';
                             (ch.sendLine(frame));
                         }
