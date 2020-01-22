@@ -52,11 +52,15 @@ fromKB::fromKB(ConnectionHandler &ch, bool isConnected, ClientData &clientData):
                 ch.sendLine(frame);
                     clientData->addReceipt(clientData->getReceiptID(), "Exited " + genre);
 
-
             }
             if (clientData->isConnected() && words[0] == "add") {
                 string genre = words[1];
-                string book = words[2];
+                int i = 2;
+                string book;
+                while (i<words.size()) {
+                    book = book +  words[i] + " ";
+                    i++;
+                }
                 string name = clientData->getName();
                 //create SEND frame
                 string frame = "SEND" + newLine + "destination:" + genre + newLine + newLine + name +

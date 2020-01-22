@@ -16,7 +16,6 @@ using namespace std;
 class fromServer {
 private:
     int _id;
-    bool disconnected;
     ClientData* clientData;
     ConnectionHandler& ch;
     bool isConnected;
